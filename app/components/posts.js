@@ -278,10 +278,15 @@ export function PostForm(props){
 
   }
 
-  let postTitle = "", postBody = "";
+  let postTitle = "", postBody = "", buttonDisplay
   if (!postState.loading){
     postTitle = postState.form.title;
     postBody = postState.form.body;
+    if (postTitle.length > 0 && postBody.length > 0){
+      buttonDisplay = (
+        <a onClick={onCreatePost} className="btn btn-default">create post</a>
+      );
+    }
   }
 
   return (
@@ -294,7 +299,7 @@ export function PostForm(props){
           content={postBody}
           onTextChange={onPostBodyChange}
         />
-      <a onClick={onCreatePost} className="btn btn-default">create post</a>
+      {buttonDisplay}
     </div>
   )
 }
