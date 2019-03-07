@@ -1,0 +1,1 @@
+body{margin:0}.flex-container{display:flex}#main-container{flex-direction:row;flex-wrap:wrap}#main-container aside{flex:0 0 200px;padding:10px}#main-container #view-container{padding:10px;flex:1 0}

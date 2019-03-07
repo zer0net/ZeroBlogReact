@@ -1,0 +1,116 @@
+{
+ "address": "1K2btKBf1mEPm8omCD2SScnKDek1Awv8MQ",
+ "address_index": 8015623,
+ "background-color": "#FFF",
+ "clone_root": "template-new",
+ "cloned_from": "1HeLLo4uzjaLetFx6NH3PMwFP3qbRbTf3D",
+ "description": "hello",
+ "files": {
+  "app/components/posts.js": {
+   "sha512": "e41d952fd0e6884fa63afd6320496db25fa270b97e3d11671ded456c4dda4cfe",
+   "size": 1372
+  },
+  "app/components/sidebar.js": {
+   "sha512": "466a431cb602bb01e07e4b5da86d9bbdc7b34db0858fad49c132cb97f1166102",
+   "size": 1911
+  },
+  "app/components/template.js": {
+   "sha512": "79cd517384ff1f673228c7dd3a76c522c26789a4519ea76675927356b0fded6e",
+   "size": 717
+  },
+  "app/components/views.js": {
+   "sha512": "f683871578340e410b8edbd1be9980d7df9fcf8d3e36e80e7dd34d4765c59e16",
+   "size": 3238
+  },
+  "app/context-provider.js": {
+   "sha512": "2e228510113a316efb03df2f5f8c83a90d9348379913e6d2cbe0776612422942",
+   "size": 869
+  },
+  "app/helpers.js": {
+   "sha512": "fbee394e49d1696ffd1db0b8ed2d7637ea7922dd79e96a6da873c09faf931b7b",
+   "size": 701
+  },
+  "app/index.js": {
+   "sha512": "6c31615debc3fcbe7b79dc13c8729d74994d57da3c4ab5d09710022d9d89279e",
+   "size": 1867
+  },
+  "app/reducers/app-reducer.js": {
+   "sha512": "83b8d8935fb62b16a42302ac5990320d579502e03815c9d0be008ca1073e3985",
+   "size": 518
+  },
+  "app/reducers/view-reducer.js": {
+   "sha512": "75179b91bbbf8be0cbf83574cad53d9c53f74f6e9bfd7a05d08fc004bad88785",
+   "size": 754
+  },
+  "app/reducers/zeronet-reducer.js": {
+   "sha512": "35a05b6ef7602b76bb55f651f47bc792270a738c0fbbb596167c526c491be689",
+   "size": 578
+  },
+  "assets/ZeroFrame.js": {
+   "sha512": "586e1e67a6739ac0bbfdc83b8636c98abc969d42907df38ebde8ec325156f4b7",
+   "size": 3647
+  },
+  "assets/lib/zeronet/class.js": {
+   "sha512": "affe3568586a4883a5cbe628743ee317dbcbfef58af4b15e4933828d09e581b9",
+   "size": 1341
+  },
+  "assets/lib/zeronet/zerochat.js": {
+   "sha512": "6bdf53961d6dc01412124e18327acfd3a7a15e70f09b387937af55e9ef3df608",
+   "size": 1379
+  },
+  "assets/lib/zeronet/zeroframe.js": {
+   "sha512": "d0066c5b409ef484cd48fe9d7fd74625370d0c5076047248863fd9e965b78493",
+   "size": 4566
+  },
+  "data/config.json": {
+   "sha512": "2c009e0d48d2b012bdf70828277c4587dd14c2f692b59e1f5bbf2eb8a1a80bf4",
+   "size": 27
+  },
+  "dbschema.json": {
+   "sha512": "c64f23a5c91e01c5d59222c37786110899a136e2165ec469ec996083b53202ba",
+   "size": 2614
+  },
+  "index.html": {
+   "sha512": "708697cfb4bc4c3ddd3e2bbd40bea16e9f25915ddb6b007b55f6bee5c4a6f911",
+   "size": 748
+  },
+  "main.js": {
+   "sha512": "65ffd0cafd167195dd3c332d5589542933be0c8889dbbac7073bb8d17e4457d6",
+   "size": 953413
+  },
+  "package-lock.json": {
+   "sha512": "5074a63b0e2788b020554bf246c68d9a50c319d12b642ef48a205fb0210a2dcc",
+   "size": 197915
+  },
+  "package.json": {
+   "sha512": "79063ae22df2b05c78fc8b1afdabbbe7db84a9e978fa999dce61851736abf6b9",
+   "size": 709
+  },
+  "public/main.js": {
+   "sha512": "9f7ae99e45cdb6dfc492a16810c7982769b133d0b9ab15ebd89564c402297c2a",
+   "size": 120111
+  },
+  "webpack.config.js": {
+   "sha512": "c4efdecb00f7829c3bfddef42bdb2a2afb1c5fd98a88fb95702c5ab136bbdd71",
+   "size": 426
+  }
+ },
+ "ignore": "(.git|.md|.*.less|data/users|node_modules/)",
+ "includes": {
+  "data/users/content.json": {
+   "signers": [],
+   "signers_required": 1
+  }
+ },
+ "inner_path": "content.json",
+ "modified": 1551707777,
+ "optional": ".*.(epub|jpg|jpeg|png|gif|avi|ogg|webm|mp4|mp3|mkv|woff|ttf)",
+ "postmessage_nonce_security": true,
+ "signers_sign": "Gwj60Pysmj0+d69s1D2FKuuCMByp0hf11PXPGVGZdUJjE+NyL3+qaOHs/6VvMxQp4Pkz1zKpLAc0cYjIlKKD2jU=",
+ "signs": {
+  "1K2btKBf1mEPm8omCD2SScnKDek1Awv8MQ": "HGtoFlz89fCME8rP9/sr6BDVx528oEJ2MLO32A6GAMWRO6wV9hfPyj93vSH1tuu5Bz401d/e0zI8hC4wz2Tabvk="
+ },
+ "signs_required": 1,
+ "title": "ZeroBlog React",
+ "zeronet_version": "0.6.4"
+}

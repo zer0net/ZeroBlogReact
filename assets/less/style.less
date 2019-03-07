@@ -1,0 +1,25 @@
+out: ../css/style.css, sourcemap: true, compress: true
+@import "elements.less";
+
+body {
+  margin: 0;
+}
+
+.flex-container {
+  display: flex;
+}
+
+#main-container {
+  flex-direction: row;
+  flex-wrap: wrap;
+
+  aside {
+    flex: 0 0 200px;
+    padding: 10px;
+  }
+
+  #view-container {
+    padding: 10px;
+    flex:1 0;
+  }
+}
