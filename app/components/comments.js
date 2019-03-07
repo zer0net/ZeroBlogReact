@@ -73,7 +73,6 @@ function CommentForm() {
         });
       });
     });
-
   }
 
   let commentBody;

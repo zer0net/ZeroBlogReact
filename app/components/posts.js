@@ -1,45 +1,34 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import {Context} from '../context-provider.js';
-import {DateHelper, GeneratePostsQuery, GenerateIsLikedByUserQuery} from '../helpers.js';
+import {DateHelper, GenerateIsLikedByUserQuery} from '../helpers.js';
 import CommentsContainer from './comments.js';
-import {Loading,TextEditor} from './partials.js';
+import {Loading,TextEditor,AdminItemToolBar} from './partials.js';
 
 export function PostsList(){
 
-  const {
-    postState,postDispatch
-  } = React.useContext(Context);
+  const {postState} = React.useContext(Context);
 
-  React.useEffect(() => {
-    const query = GeneratePostsQuery();
-    window.Page.cmd("dbQuery",[query],function(res){
-      postDispatch({type:'SET_POSTS',posts:res});
-    });
-  },[])
-
-  let postListDisplay = ( <Loading/>);
-  if (!postState.loading){
-    if (postState.posts){
-      const postList = postState.posts.map((p,index) => (
-        <PostItem
-          key={index}
-          post={p}
-        />
-      ));
-      postListDisplay = (
-        <div id="posts-list">
-          {postList}
-        </div>
-      );
-    } else {
-      postListDisplay = (
-        <div id="no-posts">
-          <h2>Congratulations</h2>
-          <p>Your zeronet blog has been successfully created!</p>
-        </div>
-      );
-    }
+  let postListDisplay;
+  if (postState.posts){
+    const postList = postState.posts.map((p,index) => (
+      <PostItem
+        key={index}
+        post={p}
+      />
+    ));
+    postListDisplay = (
+      <div id="posts-list">
+        {postList}
+      </div>
+    );
+  } else {
+    postListDisplay = (
+      <div id="no-posts">
+        <h2>Congratulations</h2>
+        <p>Your zeronet blog has been successfully created!</p>
+      </div>
+    );
   }
 
   return (
@@ -51,7 +40,10 @@ export function PostsList(){
 
 const PostItem = (props) => {
 
-  const {postDispatch} = React.useContext(Context);
+  const {
+    zeroNetState,
+    postDispatch
+  } = React.useContext(Context);
 
   const post = props.post;
 
@@ -75,48 +67,46 @@ const PostItem = (props) => {
   )
 }
 
-export function Post() {
+export function Post(props) {
 
-  const {
-    appState,
-    postState,postDispatch
-  } = React.useContext(Context);
+  const {zeroNetState,postState} = React.useContext(Context);
 
-  React.useEffect(() => {
-    const query = GeneratePostsQuery(appState.route.id)
-    window.Page.cmd('dbQuery',[query],function(res){
-      postDispatch({type:'SET_POST',post:res[0]})
-    });
-  },[])
+  let post;
+  if (props.post){ post = props.post}
+  else { post = postState.post }
 
   function onAddPostLike(){
-    postDispatch({type:'ADD_POST_LIKE'});
+    let addPostLikeAction = {type:'ADD_POST_LIKE'}
+    if (props.post) addPostLikeAction.postId = post.post_id
+    postDispatch(addPostLikeAction);
   }
 
   function onRemovePostLike(){
-    postDispatch({type:'REMOVE_POST_LIKE'});
+    let removePostLikeAction = {type:'REMOVE_POST_LIKE'}
+    if (props.post) removePostLikeAction.postId = post.post_id
+    postDispatch(removePostLikeAction);
   }
 
-  let postViewDisplay = <Loading/>
-  if (!postState.loading){
-    const post = postState.post;
-    postViewDisplay = (
-      <div className="post-container">
+  let commentsDisplay;
+  if (postState.post){
+    commentsDisplay = <CommentsContainer post={post} />
+  }
 
-        <PostHeader
-          post={post}
-          onAddPostLike={onAddPostLike}
-          onRemovePostLike={onRemovePostLike}
-        />
-        <article dangerouslySetInnerHTML={{__html: post.post_body }}></article>
-        <CommentsContainer post={post} />
-      </div>
-    )
+  let adminItemToolBar;
+  if (zeroNetState.site_info.settings.own){
+    adminItemToolBar = <AdminItemToolBar post={post}/>
   }
 
   return (
-    <div className="post" id={"post-"+appState.route.id}>
-      {postViewDisplay}
+    <div className="post" id={"post-"+post.post_id}>
+      <PostHeader
+        post={post}
+        onAddPostLike={onAddPostLike}
+        onRemovePostLike={onRemovePostLike}
+      />
+      {adminItemToolBar}
+      <article dangerouslySetInnerHTML={{__html: post.post_body }}></article>
+      {commentsDisplay}
     </div>
   );
 }
@@ -186,8 +176,7 @@ const PostHeader = (props) => {
       required:false
     },function(data){
       data = JSON.parse(data);
-      let likeIndex;
-      data.like.forEach(function(l,index){ if (l.like_id === like.like_id){ likeIndex = index } });
+      const likeIndex = data.like.findIndex((l) => l.like_id === like.like_id);
       data.like.splice(likeIndex,1);
       const json_raw = unescape(encodeURIComponent(JSON.stringify(data, void 0, '\t')));
       window.Page.cmd("fileWrite", [inner_path  + "/data.json", btoa(json_raw)], function(res) {
